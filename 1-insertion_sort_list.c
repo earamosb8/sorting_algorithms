@@ -43,6 +43,6 @@ void insertion_sort_list(listint_t **list)
 				break;
 			tmp = right, tmp = tmp->prev;
 		}
-		head = head->next;
+		head = tmp, head = head->next;
 	}
 }
