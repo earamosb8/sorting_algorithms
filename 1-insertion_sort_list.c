@@ -19,7 +19,7 @@ void insertion_sort_list(listint_t **list)
 				if (left->prev == NULL && right->next == NULL)
 				{
 					left->next = NULL, right->prev = NULL;
-					left->prev = right, right->next = left;
+					left->prev = right, right->next = left, *list = right;
 				}
 				else if (right->next == NULL)
 				{
@@ -43,6 +43,6 @@ void insertion_sort_list(listint_t **list)
 				break;
 			tmp = right, tmp = tmp->prev;
 		}
-		head = tmp, head = head->next;
+	        head = head->next;
 	}
 }
