@@ -6,10 +6,7 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	int low = 0;
-	int high = size - 1;
-
-	recursion_qs(array, low, high, size);
+	recursion_qs(array, 0, size - 1, size);
 }
 /**
  * partition - part array
@@ -19,28 +16,35 @@ void quick_sort(int *array, size_t size)
  * @size: length array
  * Return: int
  */
-int partition(int arr[], int low, int high, size_t size)
+int partition(int *arr, int low, int high, size_t size)
 {
 	int pivot = arr[high];
 	int i = (low - 1);
-	int t = 0;
-	int j = 0;
+	int t, j;
 
-	for (j = low; j <= high - 1; j++)
+	for (j = low; j < high; j++)
 	{
 		if (arr[j] < pivot)
 		{
 			i++;
-			t = arr[i];
-			arr[i] = arr[j];
-			arr[j] = t;
+			if (i != j)
+			{
+				t = arr[i];
+				arr[i] = arr[j];
+				arr[j] = t;
+				print_array(arr, size);
+			}
 		}
 	}
-	t = arr[i + 1];
-	arr[i + 1] = arr[high];
-	arr[high] = t;
-	print_array(arr, size);
-	return (i + 1);
+	i++;
+	if (i != j)
+	{
+		t = arr[i];
+		arr[i] = arr[high];
+		arr[high] = t;
+		print_array(arr, size);
+	}
+	return (i);
 }
 /**
  * recursion_qs - recursive sort function
